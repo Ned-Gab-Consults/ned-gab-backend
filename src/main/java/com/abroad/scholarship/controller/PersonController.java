@@ -1,17 +1,11 @@
 package com.abroad.scholarship.controller;
 
-import com.abroad.scholarship.dto.Login;
-import com.abroad.scholarship.dto.LoginDto;
-import com.abroad.scholarship.dto.PasswordDto;
-import com.abroad.scholarship.dto.PersonDto;
+import com.abroad.scholarship.dto.*;
 import com.abroad.scholarship.models.Person;
 import com.abroad.scholarship.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequestMapping("/person") @RestController @RequiredArgsConstructor
@@ -20,13 +14,25 @@ private final PersonService personService;
 
 
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Person> createAccount(@RequestBody PersonDto personDto){
         return personService.createAccount(personDto);
+    }
+
+    @PatchMapping("")
+    public ResponseEntity<Person> editAccount(@RequestBody PersonDto personDto){
+        return personService.updateDetails(personDto);
     }
 
     @PostMapping("/changePassword")
     public ResponseEntity<Person> changePassword(@RequestBody PasswordDto passwordDto){
         return personService.changePassword(passwordDto);
     }
+
+    @PostMapping("/forgotPassword")
+    public ResponseEntity<String> forgotPassword(@RequestBody EmailDto emailDto){
+        return personService.forgotPassword(emailDto);
+    }
+
+
 }

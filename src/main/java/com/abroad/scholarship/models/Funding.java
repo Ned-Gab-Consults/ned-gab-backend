@@ -17,7 +17,7 @@ public class Funding extends Audit{
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
-    private String backgound;
+    private String background;
     private String reason;
     private String contactPerson;
     private String contactLink;

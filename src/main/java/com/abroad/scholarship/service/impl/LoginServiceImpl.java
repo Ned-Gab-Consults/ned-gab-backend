@@ -9,17 +9,16 @@ import com.abroad.scholarship.repository.PersonRepository;
 import com.abroad.scholarship.service.BlackListService;
 import com.abroad.scholarship.service.LoginService;
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LoginServiceImpl implements LoginService {
 
     private final AuthenticationManager authenticationManager;
@@ -28,7 +27,6 @@ public class LoginServiceImpl implements LoginService {
     private final BlackListService blackListService;
     private final BlackListedTokenRepository blackListedTokenRepository;
     private final HttpServletRequest httpServletRequest;
-
     private final PersonRepository PersonRepository;
 
 

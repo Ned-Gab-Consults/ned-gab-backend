@@ -46,24 +46,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/staff","/user_option","/location_option","/department_option").permitAll()
+                .antMatchers("/person").permitAll()
                 .antMatchers("/leave").hasAnyAuthority("ADMIN","STAFF")
-                .antMatchers("/checkout/**").hasAuthority("ROLE_PREMIUM")
-
-                .antMatchers("/favorite/**").permitAll()
-                .antMatchers("v3/api/-docs/**", "v2/api-docs/**",
-                        "swagger-resources/**", "webjars/**")
-                .permitAll()
-                .antMatchers("/api/admin/create-product", "/api/admin/upload-image", "/api/admin/update-product-image/{id}", "/api/admin/update-product/{id}", "/api/admin/view-all-orders").hasAuthority("ROLE_ADMIN")
-
-                .antMatchers("/api/admin/create-product", "/api/admin/upload-image", "/api/admin/update-product-image/{id}", "/api/admin/update-product/{id}", "/api/admin/view-all-orders", "/api/admin/view-particular-order/{orderId}").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/admin/users").permitAll()
-                .antMatchers("/api/v1/auth/users/getAllProducts/**").permitAll()
-                .antMatchers("/api/v1/auth/users/orders").hasAuthority("ROLE_PREMIUM")
-                .antMatchers("/api/admin/view-all-orders/{orderId}/update-order-status").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/api/v1/auth/users/getAllProducts/**").permitAll()
-                .antMatchers("/api/v1/auth/users/getAllProducts").permitAll()
-                .antMatchers("/favorite/**").permitAll()
                 .antMatchers("/v2/api-docs",
                         "/swagger-resources",
                         "/swagger-resources/**",

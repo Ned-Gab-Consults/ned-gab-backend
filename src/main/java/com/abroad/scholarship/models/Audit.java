@@ -11,13 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
-@Getter
-@Setter
-@ToString
+@MappedSuperclass @Getter @Setter @ToString
 public class Audit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @CreationTimestamp
     private LocalDateTime createdTime;

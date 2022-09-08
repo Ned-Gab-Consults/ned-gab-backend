@@ -1,5 +1,6 @@
 package com.abroad.scholarship.service.impl;
 
+import com.abroad.scholarship.dto.EmailDto;
 import com.abroad.scholarship.dto.PasswordDto;
 import com.abroad.scholarship.dto.PersonDto;
 import com.abroad.scholarship.enums.Role;
@@ -46,5 +47,15 @@ public class PersonServiceImpl implements PersonService {
         p.setPassword(encoder.encode(passwordDto.getConfirmPassword()));
         log.info("{} set to new password", passwordDto.getNewPassword());
         return ResponseEntity.ok().body(personRepo.save(p));
+    }
+
+    @Override
+    public ResponseEntity<Person> updateDetails(PersonDto personDto) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<String> forgotPassword(EmailDto emailDto) {
+        return null;
     }
 }
