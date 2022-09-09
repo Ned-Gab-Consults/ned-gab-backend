@@ -7,6 +7,7 @@ package com.abroad.scholarship.config.mail;
 
 
 import com.abroad.scholarship.dto.EmailSenderDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
@@ -15,24 +16,29 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 @Service
-public class SendMail implements LmsSender {
+public class SendMail implements NedGabSender {
+    @Value("${mail.email}")
+    private String email;
+    @Value("${mail.password}")
+    private String password;
 
+    //587 465
     @Override
     public void send(EmailSenderDto dto) {
 
         String to = dto.getTo();
-        String from = "Leave Management System Portal <noreply@northwestpetroleum-ng.com>";
-        String host = "smtp.office365.com";
+        String from = "NedGab Consults <"+email+">";
+        String host = "smtp.gmail.com";
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "false");
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         Session session = Session.getInstance(properties, new Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("noreply@northwestpetroleum-ng.com", "Northwest123");
+                return new PasswordAuthentication(email, password);
             }
 
         });

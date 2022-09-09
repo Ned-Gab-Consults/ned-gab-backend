@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -46,8 +47,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/person").permitAll()
-                .antMatchers("/leave").hasAnyAuthority("ADMIN","STAFF")
+                .antMatchers(HttpMethod.POST,"/person","/person/forgot_password").permitAll()
                 .antMatchers("/v2/api-docs",
                         "/swagger-resources",
                         "/swagger-resources/**",
@@ -56,27 +56,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/webjars/**",
                         "/v3/api-docs/**",
-                        "/swagger-ui/**").permitAll()
+                        "/swagger-ui/**","/acc","/acc/**").permitAll()
 
-                .antMatchers("/home", "/company", "/faq",
-                        "/contact", "/signup", "/confirmRegistration",
-                        "/h2-console/**", "/login", "/logout", "/forgot_password",
-                        "/api/v1/auth/login", "/verifyEmail", "/api/v1/auth/users/forgot-password",
-                        "/api/v1/auth/users/enter-password", "/api/v1/auth/users/reset-password",
-                        "/api/v1/auth/logout", "/cart/**")
-                .permitAll()
-                .antMatchers("/api/v1/auth/users/fetch-single-product/{id}").hasAnyAuthority("ROLE_ADMIN", "ROLE_PREMIUM", "ROLE_ANONYMOUS")
-                .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                .antMatchers("api/v1/auth/wallet/fund-wallet").hasAuthority("ROLE_PREMIUM")
-                .antMatchers("api/v1/auth/wallet/withdrawal").hasAuthority("ROLE_PREMIUM")
-                .antMatchers("/orders").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/api/admin/delete-product/{productId}").hasAuthority("ROLE_ADMIN")
-                .antMatchers( "/checkout",
-                        "/wallet", "/order-history",
-                        "/favorites", "/verifyEmail")
-
-                .hasAnyAuthority("ROLE_ADMIN", "ROLE_PREMIUM")
-                .antMatchers("/api/v1/auth/users/view-a-single-favorite-product").hasAnyAuthority("ROLE_ADMIN", "ROLE_PREMIUM")
                 .antMatchers("/api/v1/auth/users/favorites").hasAnyAuthority("ROLE_ADMIN", "ROLE_PREMIUM")
                 .antMatchers("/api/v1/auth/users/favorites/{productId}").hasAnyAuthority("ROLE_ADMIN", "ROLE_PREMIUM")
                 .anyRequest()

@@ -18,20 +18,24 @@ private final PersonService personService;
     public ResponseEntity<Person> createAccount(@RequestBody PersonDto personDto){
         return personService.createAccount(personDto);
     }
-
     @PatchMapping("")
     public ResponseEntity<Person> editAccount(@RequestBody PersonDto personDto){
         return personService.updateDetails(personDto);
     }
 
-    @PostMapping("/changePassword")
+    @PostMapping("/change_password")
     public ResponseEntity<Person> changePassword(@RequestBody PasswordDto passwordDto){
         return personService.changePassword(passwordDto);
     }
 
-    @PostMapping("/forgotPassword")
+    @PostMapping("/forgot_password")
     public ResponseEntity<String> forgotPassword(@RequestBody EmailDto emailDto){
         return personService.forgotPassword(emailDto);
+    }
+
+    @PostMapping("/change_role/{id}")
+    public ResponseEntity<Person> changeUserType(@RequestBody UserTypeDto userTypeDto, @PathVariable long id){
+        return personService.changeRole(id, userTypeDto);
     }
 
 

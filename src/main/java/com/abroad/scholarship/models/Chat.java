@@ -3,6 +3,7 @@ package com.abroad.scholarship.models;
 import lombok.*;
 
 import javax.persistence.Entity;
+import java.time.LocalDate;
 
 @Entity
 @ToString
@@ -11,7 +12,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StepsVisa extends Audit{
-    private String Step;
-    private boolean completed;
+public class Chat extends Audit{
+    private String firstName;
+    private String message;
 }

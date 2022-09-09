@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 @Builder
 public class VisaApplication extends Audit{
     private String country;
+    private String typeOfVisa;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;

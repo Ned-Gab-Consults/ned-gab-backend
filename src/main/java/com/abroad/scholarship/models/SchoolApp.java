@@ -16,11 +16,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SchoolApplication extends Audit{
+public class SchoolApp extends Audit{
+    private String schoolName;
+    private String country;
+    private String city;
+    private String course;
+    private String reviewMessage;
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
-    @ManyToMany
-    private List<SchoolNames> listOfSchools = new ArrayList<>();
+    private boolean notify;
+
 
 }
