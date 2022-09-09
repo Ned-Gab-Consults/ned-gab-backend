@@ -23,19 +23,19 @@ public class FileDocController {
         return fileDocService.createFile(file, name);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<FileDoc>> fetchFiles(@PathVariable long id){
-        return fileDocService.fetchFiles(id);
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<FileDoc>> fetchFiles(@PathVariable long userId){
+        return fileDocService.fetchFiles(userId);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<FileDoc> upDateFile(@PathVariable long id, @RequestPart MultipartFile file){
-        return fileDocService.upDate(file,id);
+    @PutMapping("/{fileId}")
+    public ResponseEntity<FileDoc> upDateFile(@RequestPart MultipartFile file,@PathVariable long fileId){
+        return fileDocService.upDate(file,fileId);
     }
 
-    @GetMapping("/download/{id}")
-    public void downloadfile(HttpServletResponse response, @PathVariable long id){
-        fileDocService.downloadFile(response, id);
+    @GetMapping("/download/{fileId}")
+    public void downloadfile(HttpServletResponse response, @PathVariable long fileId){
+        fileDocService.downloadFile(response, fileId);
     }
 
 

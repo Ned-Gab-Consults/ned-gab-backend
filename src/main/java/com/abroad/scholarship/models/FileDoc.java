@@ -1,5 +1,6 @@
 package com.abroad.scholarship.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Builder
 public class FileDoc extends Audit{
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;

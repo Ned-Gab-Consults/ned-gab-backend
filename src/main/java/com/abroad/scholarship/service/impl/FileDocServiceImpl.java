@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,15 +54,17 @@ public class FileDocServiceImpl implements FileDocService {
         if (!inputFile.isEmpty()) {
             try {
                 String originalFilename = inputFile.getOriginalFilename();
-                File destinationFile = new File(root + File.separator + originalFilename);
+                File destinationFile = new File(root + File.separator + originalFilename).getCanonicalFile();
                 if (destinationFile.exists()) {
                     originalFilename = randomNumber.concat(Objects.requireNonNull(inputFile.getOriginalFilename()));
-                    destinationFile = new File(root + File.separator + originalFilename);
+                    destinationFile = new File(root + File.separator + originalFilename).getCanonicalFile();
                 }
                 inputFile.transferTo(destinationFile);
                 result = destinationFile.toString();
 
                 toReturn = new String[]{originalFilename,result};
+
+                System.out.println("To String array "+ Arrays.toString(toReturn));
 
             } catch (Exception e) {
                 log.error("File unable to be saved");

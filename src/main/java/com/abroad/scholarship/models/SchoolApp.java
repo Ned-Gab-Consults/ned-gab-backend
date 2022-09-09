@@ -1,5 +1,6 @@
 package com.abroad.scholarship.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ public class SchoolApp extends Audit{
     private String city;
     private String course;
     private String reviewMessage;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;

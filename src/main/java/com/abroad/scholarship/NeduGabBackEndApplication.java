@@ -22,37 +22,37 @@ public class NeduGabBackEndApplication {
     }
 
 
-    @Bean
-    CommandLineRunner run (PersonRepository personRepo, PasswordEncoder encoder){
-        return  args -> {
-
-
-
-
-            Person p = Person.builder()
-                    .firstName("Darlington")
-                    .lastName("Olelewe")
-                    .email("o.darlington@gmail.com")
-                    .password(encoder.encode("12345"))
-                    .role(Role.ADMIN)
-                    .gender(Gender.MALE)
-                    .status(Status.ALL)
-                    .build();
-            Person p2 = Person.builder()
-                    .firstName("Dennis")
-                    .lastName("Okoye")
-                    .gender(Gender.MALE)
-                    .email("okoyedennis7@gmail.com")
-                    .password(encoder.encode("12345"))
-                    .role(Role.USER)
-                    .status(Status.ALL)
-                    .build();
-
-            personRepo.save(p);
-            personRepo.save(p2);
-
-            log.info("{} {}",p, p2);
-
-        };
-    }
+//    @Bean
+//    CommandLineRunner run (PersonRepository personRepo, PasswordEncoder encoder){
+//        return  args -> {
+//
+//
+//
+//
+//            Person p = Person.builder()
+//                    .firstName("Darlington")
+//                    .lastName("Olelewe")
+//                    .email("o.darlington@gmail.com")
+//                    .password(encoder.encode("12345"))
+//                    .role(Role.ADMIN)
+//                    .gender(Gender.MALE)
+//                    .status(Status.ALL)
+//                    .build();
+//            Person p2 = Person.builder()
+//                    .firstName("Dennis")
+//                    .lastName("Okoye")
+//                    .gender(Gender.MALE)
+//                    .email("okoyedennis7@gmail.com")
+//                    .password(encoder.encode("12345"))
+//                    .role(Role.USER)
+//                    .status(Status.ALL)
+//                    .build();
+//
+//            personRepo.save(p);
+//            personRepo.save(p2);
+//
+//            log.info("{} {}",p, p2);
+//
+//        };
+//    }
 }

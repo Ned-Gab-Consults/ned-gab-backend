@@ -1,5 +1,6 @@
 package com.abroad.scholarship.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 public class VisaApplication extends Audit{
     private String country;
     private String typeOfVisa;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
